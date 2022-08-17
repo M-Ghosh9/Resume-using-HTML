@@ -1,0 +1,167 @@
+<html>
+<head>
+<script type="text/javascript">
+function validate()
+{ 
+  var num=/^(?:[0-9]{4}1[A-Za-z]{3}[0-9]{4})$/; 
+  if(document.Registration.uid.value == "" || !num.test(document.Registration.uid.value))
+    {
+      alert("Please provide your UID!");
+      document.Registration.uid.focus();
+      return false;
+    }
+
+  var letter=/^[A-Za-z]+$/; 
+  if(document.Registration.textnames.value == "" || !letter.test(document.Registration.textnames.value))
+    {
+      alert("Please provide your Name!");
+      document.Registration.textnames.focus();
+      return false;
+    }
+  
+    if(document.Registration.km.value == "" || isNaN(document.Registration.km.value))
+    {
+      alert("Please enter distance in KM!");
+      document.Registration.km.focus();
+      return false;
+    } 
+    else if(document.Registration.km.value< 10)
+    {
+      alert("Cannot avail transport facility!");
+      document.Registration.km.focus();
+      return false;
+    }
+
+    if ((Registration.cool[0].checked == false) && (Registration.cool[1].checked == false))
+    {
+      alert ("Please choose: AC or Non-AC");
+      return false;
+    } 
+
+   if(document.Registration.mobileno.value == "" || isNaN(document.Registration.mobileno.value) || document.Registration.mobileno.value.length != 10)
+    {
+      alert("Please provide a 10 digit mobile number!");
+      document.Registration.mobileno.focus();
+      return false;
+    }
+
+    var branch=/^(?:[A-Za-z]{3})$/; 
+  if(document.Registration.branch.value == "" || !branch.test(document.Registration.branch.value))
+    {
+      alert("Please provide your Branch!");
+      document.Registration.branch.focus();
+      return false;
+    }
+
+  return(true);
+}
+
+  function Myaddress()
+  {
+      var add2=document.getElementById('add1').value;
+      document.getElementById('add3').value=add2;
+      if(document.Registration.address.value == "")
+    {
+      alert("Please provide your Present Address!");
+      document.Registration.address.focus();
+      return false;
+   }
+
+  }
+
+  function selectOnlyThis(id) {
+    for (var i = 1;i <= 6; i++)
+    {
+        document.getElementById("Check" + i).checked = false;
+    }
+    document.getElementById(id).checked = true;
+}
+
+  function result()
+{
+  if(validate()==true)
+    {
+      alert("Congrats! You have succesfully registered!!!");
+    }
+}
+
+
+</script>
+</head>
+
+<body style="background-color: darkt; background-image: repeating-linear-gradient(to top right,rgb(245, 4, 4),rgb(255, 217, 0));">
+    <form action="#" name="Registration" onsubmit="return(result());">
+
+       <table cellpadding="3" width="30%" align="left" style="color: aliceblue; border: none; border-radius: 50px;box-shadow: 0 8px 28px 0 rgba(0,0,0,0.6),0 6px 20px 0 rgba(0,0,0,0.19); margin-left: 200px; margin-top: 20px; margin-bottom: 20px;"
+       cellspacing="5">
+
+          <tr>
+            <td colspan=2 cellpadding="3">
+              <center><font size=5 style="color: red"><h3><b>Presidency University<br>Transport Facility<br></b></h3></font></center>
+            </td>
+          </tr>
+
+          <tr>
+            <td>UID</td>
+            <td><input type=text name=uid size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Name</td>
+            <td><input type=text name=textnames size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Distance from University(in km)</td>
+            <td><input type=text name=km size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Pick Up Location:</td>
+          </tr>
+
+          <tr><td><input type="checkbox" id="Check1" value="Value1" onclick="selectOnlyThis(this.id)">Yelahanka</td>      <td><input type="checkbox" id="Check4" value="Value1" onclick="selectOnlyThis(this.id)">Attur Layout</td></tr>
+          <tr><td><input type="checkbox" id="Check2" value="Value1" onclick="selectOnlyThis(this.id)">Hebbal</td>         <td><input type="checkbox" id="Check5" value="Value1" onclick="selectOnlyThis(this.id)">MS Palya</td></tr>
+          <tr><td><input type="checkbox" id="Check3" value="Value1" onclick="selectOnlyThis(this.id)">Rajanukunte</td>    <td><input type="checkbox" id="Check6" value="Value1" onclick="selectOnlyThis(this.id)">Jakkur</td></tr>
+
+          <tr>
+            <td>Choose AC or Non-AC</td>
+            <td><input type="radio" name="cool" value="AC" size="10">AC
+                <input type="radio" name="cool" value="Non-AC" size="10">Non-AC</td>
+          </tr>
+
+          <tr>
+            <td>Present Address</td>
+            <td><input type="text" name="address" id="add1" size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Is your current address same as permanent address?</td>
+            <td><input type="radio" name="choose" value="Yes" size="10" onclick="Myaddress()">Yes
+                <input type="radio" name="choose" value="No" size="10">No</td>
+          </tr>
+
+          <tr>
+            <td>Present Address(copy)</td>
+            <td><input type="text" name="address" id="add3" size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Mobile number</td>
+            <td><input type="text" name="mobileno" size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td>Branch:</td>
+            <td><input type="text" name="branch" size="30" style="border:none;border-radius: 20px;box-shadow: 0 5px 18px 0 rgba(0,0,0,0.15),0 6px 15px 0 rgba(0,0,0,0.19);"></td>
+          </tr>
+
+          <tr>
+            <td><input type="submit" value="Submit Form" onclick="return(validate())" style="border: none;border-radius: 30px; padding: 8px; margin-left: 80px;"/></td>
+            <td><input type="reset" style="border: none;border-radius: 30px; padding: 8px 25px; margin-left: 50px;"/></td>
+          </tr>
+
+      </table>
+    </form>
+</body>
+</html>
